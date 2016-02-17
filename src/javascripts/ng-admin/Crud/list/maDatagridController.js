@@ -76,7 +76,13 @@ define(function () {
      * @returns {String}
      */
     DatagridController.prototype.getSortName = function (field) {
-        return this.$scope.name ? this.$scope.name + '.' + field.name() : field.name();
+        var sortFieldName = field.name();
+
+        if (field.sortField) {
+            sortFieldName = field.sortField();
+        }
+
+        return this.$scope.name ? this.$scope.name + '.' + sortFieldName : sortFieldName;
     };
 
     DatagridController.prototype.toggleSelect = function (entry) {
